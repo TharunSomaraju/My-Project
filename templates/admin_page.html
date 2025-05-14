@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        th {
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+        .table th,
+        .table td {
+            width: auto;
+            white-space: nowrap;
+        }
+        .related-table th,
+        .related-table td {
+            width: auto;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Page</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if histogram_url %}
+            <h2>Issue Report Statistics</h2>
+            <img src="{{ histogram_url }}" alt="Issue Report Statistics">
+        {% endif %}
+
+        {% if heatmap_url %}
+            <h2>Severity Prediction by Issue and Place</h2>
+            <img src="{{ heatmap_url }}" alt="Severity Prediction by Issue and Place">
+        {% endif %}
+
+        {% if kmeans_url %}
+            <h2>K-means Clustering of Issue Locations</h2>
+            <img src="{{ kmeans_url }}" alt="K-means Clustering">
+        {% endif %}
+
+
+        <h2>Issue Reports</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Aadhaar Number</th>
+                    <th>Issue</th>
+                    <th>Description</th>
+                    <th>Area</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in userform_entries %}
+                    <tr>
+                        <td>{{ entry[0] }}</td>
+                        <td>{{ entry[1] }}</td>
+                        <td>{{ entry[2] }}</td>
+                        <td>{{ entry[3] }}</td>
+                        <td>{{ entry[4] }}</td>
+                        <td>{{ entry[5] }}</td>
+                        <td>{{ entry[6] }}</td>
+                        <td>{{ entry[7] }}</td>
+                        <td>{{ entry[8] }}</td>
+                        <td>
+
+                            <form method="POST" action="{{ url_for('delete_userform', form_id=entry[0]) }}" onsubmit="return confirm('Are you sure you want to delete this entry?')" class="d-inline">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+        <form method="POST" action="{{ url_for('logout') }}">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   
+</body>
+</html>

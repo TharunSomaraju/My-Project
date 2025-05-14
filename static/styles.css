@@ -1,0 +1,212 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333; /* Dark text color */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #4a3c2a; /* Dark brown */
+    text-align: center;
+    padding: 20px;
+    background-color: #c8e6c9; /* Light green */
+    border-bottom: 2px solid #388e3c; /* Dark green */
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff; /* White background for form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="file"], select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Light grey border */
+}
+
+input[type="submit"] {
+    background-color: #4a3c2a; /* Dark brown */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #388e3c; /* Dark green on hover */
+}
+
+.flash {
+    padding: 10px;
+    margin: 10px;
+}
+
+.flash.success {
+    background-color: #c8e6c9; /* Light green */
+}
+
+.flash.danger {
+    background-color: #ffcdd2; /* Light red */
+}
+
+.flash.info {
+    background-color: #bbdefb; /* Light blue */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333; /* Dark text color */
+}
+
+h1 {
+    color: #4a3c2a; /* Dark brown */
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="file"], select {
+    width: calc(100% - 22px);
+}
+
+input[type="submit"] {
+   background-color: #4a3c2a; /* Dark brown */
+   color: white;
+   padding: 10px;
+   border: none;
+}
+
+.flash {
+   padding: 10px;
+   margin-top: 10px;
+}
+
+.flash.success {
+   background-color: #c8e6c9; /* Light green */
+}
+
+.flash.danger {
+   background-color: #ffcdd2; /* Light red */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type=text], textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+
+input[type=submit] {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type=text], textarea, select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type=file] {
+    margin-top: 10px;
+}
+
+input[type=submit] {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+
+/* Add styles for geolocation button */
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+/* Add styles for location output */
+#location-output {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0; /* Light grey */
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    word-wrap: break-word; /* Prevent overflow */
+}

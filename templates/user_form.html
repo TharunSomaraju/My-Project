@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>User Issue Submission</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="/user-form" method="post" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ name }}" readonly><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ phone_number }}" readonly><br>
+
+        <label for="aadhaar_number">Aadhaar Number:</label>
+        <input type="text" id="aadhaar_number" name="aadhaar_number" value="{{ aadhaar_number }}" readonly><br>
+
+        <label for="option">Select an Issue:</label>
+        <select id="option" name="option" required>
+            <option value="road-damage">Road Damage</option>
+            <option value="water-overflow">Water Overflow</option>
+            <option value="borewell-issue">Borewell Issue</option>
+            <option value="drainage-issue">Drainage Issue</option>
+            <option value="garbage-gathering">Garbage Gathering</option>
+            <option value="power-supply">Power Supply</option>
+        </select><br>
+
+        <label for="desc">Description:</label>
+        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
+
+        <label for="area">Area:</label>
+        <input type="text" id="area" name="area" required><br>
+
+        <label for="photo">Upload Photo:</label>
+        <input type="file" id="photo" name="photo" accept=".png,.jpg,.jpeg,.gif"><br>
+
+        <label for="location">Your Location:</label>
+        <div>
+            <button type="button" id="get-location">Capture My Location</button>
+            <div id="location-output"></div>
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+        </div><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Logout button -->
+    <form action="{{ url_for('logout') }}" method="post">
+        <input type="submit" value="Logout">
+    </form>
+
+    <script>
+        document.getElementById('get-location').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById('location-output').innerText = "Geolocation is not supported by this browser.";
+            }
+        });
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            document.getElementById('location-output').innerHTML = `
+                <p>Latitude: ${latitude}</p>
+                <p>Longitude: ${longitude}</p>
+            `;
+            // Store latitude and longitude in hidden input fields
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+        }
+
+        function showError(error) {
+            let message = '';
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    message = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    message = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    message = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    message = "An unknown error occurred.";
+                    break;
+            }
+            document.getElementById('location-output').innerText = message;
+        }
+    </script>
+</body>
+</html>
